@@ -64,6 +64,15 @@ export class NegociacaoController {
         this.negociacaoService
             .obterNegociacoesDoDia()
             .then(negociacoesDeHoje => {
+                return negociacoesDeHoje.filter(negociacaoDeHoje => {
+                    return !this.negociacoes
+                        .lista()
+                        // some: se ele encontra a primeira afirmação verdadeira, retorna true
+                        // se ele não encontra nada, ele retorna verdadeiro
+                        .some(negociacao => negociacao.ehIgual(negociacaoDeHoje))
+                })
+            })
+            .then(negociacoesDeHoje => {
                 for (let negogociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negogociacao);
                 }
