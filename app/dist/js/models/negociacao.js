@@ -32,3 +32,4 @@ export class Negociacao {
     }
 }
 const o = new Negociacao(new Date(), 1, 100);
+//# sourceMappingURL=negociacao.js.map
