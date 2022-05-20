@@ -17,7 +17,7 @@ export abstract class View<T> {
         }
     }
 
-    @logarTempoDeExecucao()
+    @logarTempoDeExecucao(true)
     public update(model: T): void {
         // performance.now: api de performa do navegador
         // const t1 = performance.now();
