@@ -12,6 +12,12 @@ if (form) {
 }
 
 const botaoImporta = document.querySelector('#botao-importa');
+const buttonDark = document.querySelector("#dark-mode");
+
+buttonDark?.addEventListener('click', () => {
+    console.log(buttonDark)
+    document.body.classList.toggle('dark-mode')
+});
 
 if (botaoImporta) {
     botaoImporta.addEventListener('click', () => {
