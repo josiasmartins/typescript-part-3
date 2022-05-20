@@ -13,6 +13,7 @@ import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
+import { imprimir } from '../utils/imprimir.js';
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes();
@@ -29,9 +30,8 @@ export class NegociacaoController {
             return;
         }
         this.negociacoes.adiciona(negociacao);
-        console.log(negociacao.paraTexto());
-        console.log(this.negociacoes.paraTexto());
-        console.log(JSON.stringify(this.negociacoes, null, 2));
+        const calopsita = 'miau';
+        imprimir(negociacao, this.negociacoes, calopsita);
         this.limparFormulario();
         this.atualizaView();
     }
