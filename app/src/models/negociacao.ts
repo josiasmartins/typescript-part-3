@@ -4,14 +4,12 @@ import { Imprimivil } from '../utils/imprimivil.js';
  *  extends
  *      - polimorfismo
  */
-export class Negociacao extends Imprimivil {
+export class Negociacao implements Imprimivil {
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
         public readonly valor: number
-    ) {
-        super();
-    }
+    ) {}
 
     public static criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao {
         const exp = /-/g;

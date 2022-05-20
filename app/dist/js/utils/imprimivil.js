@@ -1,4 +1,1 @@
-export class Imprimivil {
-    constructor() { }
-    ;
-}
+export {};

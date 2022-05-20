@@ -4,7 +4,6 @@
  *      - obriga a implementar
  * 
  * **/
-export abstract class Imprimivil {
-    constructor() {};
-    public abstract paraTexto(): string;
+export interface Imprimivil {
+    paraTexto(): string;
 }
