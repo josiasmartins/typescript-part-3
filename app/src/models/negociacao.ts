@@ -1,10 +1,11 @@
+import { Comparavel } from './../interfaces/comparavel.interface.js';
 import { Imprimivil } from '../utils/imprimivil.js';
 
 /**
  *  extends
  *      - polimorfismo
  */
-export class Negociacao implements Imprimivil {
+export class Negociacao implements Imprimivil, Comparavel<Negociacao> {
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
