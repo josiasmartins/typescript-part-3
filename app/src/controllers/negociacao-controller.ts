@@ -43,10 +43,16 @@ export class NegociacaoController {
         if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
                 .update('Apenas negociações em dias úteis são aceitas');
-            return ;
+            return;
         }
 
         this.negociacoes.adiciona(negociacao);
+
+        console.log(negociacao.paraTexto());
+        console.log(this.negociacoes.paraTexto())
+
+        console.log(JSON.stringify(this.negociacoes, null, 2));
+
         this.limparFormulario();
         this.atualizaView();
     }

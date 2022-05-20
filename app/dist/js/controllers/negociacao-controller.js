@@ -29,6 +29,9 @@ export class NegociacaoController {
             return;
         }
         this.negociacoes.adiciona(negociacao);
+        console.log(negociacao.paraTexto());
+        console.log(this.negociacoes.paraTexto());
+        console.log(JSON.stringify(this.negociacoes, null, 2));
         this.limparFormulario();
         this.atualizaView();
     }
