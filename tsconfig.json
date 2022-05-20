@@ -7,6 +7,7 @@
         "removeComments": true,
         "strictNullChecks": true,
         "experimentalDecorators": true, // permite usar decorators no ts
+        "sourceMap": true // permite debugar codigo typescript no navegador
     },
     "include": ["app/src/**/*"]
 }

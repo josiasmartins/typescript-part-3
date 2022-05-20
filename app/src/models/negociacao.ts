@@ -1,4 +1,12 @@
-export class Negociacao {
+import { ModeloInterface } from './../interfaces/objeto.interface.js';
+import { Comparavel } from './../interfaces/comparavel.interface.js';
+import { Imprimivil } from '../utils/imprimivil.js';
+
+/**
+ *  extends
+ *      - polimorfismo
+ */
+export class Negociacao implements ModeloInterface<Negociacao> {
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
@@ -29,4 +37,14 @@ export class Negociacao {
             Valor: ${this.valor}
         `;
     }
+
+    public ehIgual(negociacao: Negociacao): boolean {
+        return (
+                this.data.getDate() === negociacao.data.getDate()
+                && this.data.getMonth() === negociacao.data.getMonth()
+                && this.data.getFullYear() === negociacao.data.getFullYear()
+            );
+    }
 }
+
+const o: Imprimivil = new Negociacao(new Date(), 1, 100);

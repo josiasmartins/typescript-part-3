@@ -8,6 +8,8 @@ import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
+import { imprimir } from '../utils/imprimir.js';
+import { Imprimivil } from '../utils/imprimivil.js';
 
 export class NegociacaoController {
     @domInjector('#data')
@@ -47,11 +49,12 @@ export class NegociacaoController {
         }
 
         this.negociacoes.adiciona(negociacao);
+        imprimir(negociacao, this.negociacoes);
 
-        console.log(negociacao.paraTexto());
-        console.log(this.negociacoes.paraTexto())
+        // console.log(negociacao.paraTexto());
+        // console.log(this.negociacoes.paraTexto())
 
-        console.log(JSON.stringify(this.negociacoes, null, 2));
+        // console.log(JSON.stringify(this.negociacoes, null, 2));
 
         this.limparFormulario();
         this.atualizaView();
@@ -60,6 +63,15 @@ export class NegociacaoController {
     public importaDados(): void {
         this.negociacaoService
             .obterNegociacoesDoDia()
+            .then(negociacoesDeHoje => {
+                return negociacoesDeHoje.filter(negociacaoDeHoje => {
+                    return !this.negociacoes
+                        .lista()
+                        // some: se ele encontra a primeira afirmação verdadeira, retorna true
+                        // se ele não encontra nada, ele retorna verdadeiro
+                        .some(negociacao => negociacao.ehIgual(negociacaoDeHoje))
+                })
+            })
             .then(negociacoesDeHoje => {
                 for (let negogociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negogociacao);
