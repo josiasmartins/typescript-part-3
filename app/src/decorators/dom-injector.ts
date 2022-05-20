@@ -4,10 +4,15 @@ export function domInjector(seletor: string) {
     return function(target: any, propertyKey: string) {
         console.log(`Modificando prototype ${target.constructor.name} e adicionado o getter para a propriedade ${propertyKey}`)
         console.log(propertyKey);
-
+        
+        let elemento: HTMLElement | null = null;
+        
         const getter = function() {
-            const elemento = document.querySelector(seletor);
-            console.log(`buscando elemento do DOM com o seletor ${seletor} para injetar em ${propertyKey}`)
+            if (!elemento) {
+                elemento = <HTMLElement>document.querySelector(seletor);
+                console.log(`buscando elemento do DOM com o seletor ${seletor} para injetar em ${propertyKey}`)
+            }
+
             return elemento;
         }
 
