@@ -48,6 +48,10 @@ export class NegociacaoController {
         this.atualizaView();
     }
 
+    importaDados(): void {
+        alert('ibag')
+    }
+
     private ehDiaUtil(data: Date) {
         return data.getDay() > DiasDaSemana.DOMINGO 
             && data.getDay() < DiasDaSemana.SABADO;
