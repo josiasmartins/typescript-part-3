@@ -48,8 +48,28 @@ export class NegociacaoController {
         this.atualizaView();
     }
 
-    importaDados(): void {
-        alert('ibag')
+    public importaDados(): void {
+        // fetch: recebe como parâmetro o endereço da API
+        fetch('http://localhost:8080/dados')
+            // then: retorna uma resposta
+            .then(res => {
+                // res.json: converte a resposta para o JSON
+                return res.json()
+            })
+            .then((dados: any[]) => {
+                return dados.map(dadoDeHoje => {
+                    return new Negociacao(
+                        new Date(), 
+                        dadoDeHoje.vezes, 
+                        dadoDeHoje.montante)
+                })
+            })
+            .then(negociacoesDeHoje => {
+                for (let negogociacao of negociacoesDeHoje) {
+                    this.negociacoes.adiciona(negogociacao);
+                }
+                this.negociacoesView.update(this.negociacoes);
+            }) 
     }
 
     private ehDiaUtil(data: Date) {
