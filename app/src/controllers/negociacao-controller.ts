@@ -1,3 +1,5 @@
+import { NegociacaoService } from './../services/negociacao-service.js';
+import { NegociacoesDoDiaInterface } from './../interfaces/negociacao-do-dia.interface.js';
 import { domInjector } from '../decorators/dom-injector.js';
 import { inspect } from '../decorators/inspect.js';
 import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
@@ -17,6 +19,7 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
     private mensagemView = new MensagemView('#mensagemView');
+    private negociacaoService = new NegociacaoService();
 
     constructor() {
         // this.inputData = <HTMLInputElement>document.querySelector('#data');
@@ -40,12 +43,29 @@ export class NegociacaoController {
         if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
                 .update('Apenas negociações em dias úteis são aceitas');
-            return ;
+            return;
         }
 
         this.negociacoes.adiciona(negociacao);
+
+        console.log(negociacao.paraTexto());
+        console.log(this.negociacoes.paraTexto())
+
+        console.log(JSON.stringify(this.negociacoes, null, 2));
+
         this.limparFormulario();
         this.atualizaView();
+    }
+
+    public importaDados(): void {
+        this.negociacaoService
+            .obterNegociacoesDoDia()
+            .then(negociacoesDeHoje => {
+                for (let negogociacao of negociacoesDeHoje) {
+                    this.negociacoes.adiciona(negogociacao);
+                }
+                this.negociacoesView.update(this.negociacoes);
+            }) 
     }
 
     private ehDiaUtil(data: Date) {
