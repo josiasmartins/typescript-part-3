@@ -1,6 +1,6 @@
 import { ModeloInterface } from './../interfaces/objeto.interface.js';
 import { Comparavel } from './../interfaces/comparavel.interface.js';
-import { Imprimivil } from '../utils/imprimivil.js';
+import { Imprimivil } from './../utils/imprimivil.js';
 
 /**
  *  extends
