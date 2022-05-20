@@ -1,7 +1,7 @@
 # Typescript part 3: more techniques and best practices
 
 ### demo
-![demo](./assets/);
+![demo](./assets/typescript-part-3.gif);
 
 #### building 
 - typescript
