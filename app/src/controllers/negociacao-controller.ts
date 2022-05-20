@@ -1,3 +1,4 @@
+import { NegociacaoService } from './../services/negociacao-service.js';
 import { NegociacoesDoDiaInterface } from './../interfaces/negociacao-do-dia.interface.js';
 import { domInjector } from '../decorators/dom-injector.js';
 import { inspect } from '../decorators/inspect.js';
@@ -18,6 +19,7 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
     private mensagemView = new MensagemView('#mensagemView');
+    private negociacaoService = new NegociacaoService();
 
     constructor() {
         // this.inputData = <HTMLInputElement>document.querySelector('#data');
@@ -50,21 +52,8 @@ export class NegociacaoController {
     }
 
     public importaDados(): void {
-        // fetch: recebe como parâmetro o endereço da API
-        fetch('http://localhost:8080/dados')
-            // then: retorna uma resposta
-            .then(res => {
-                // res.json: converte a resposta para o JSON
-                return res.json()
-            })
-            .then((dados: NegociacoesDoDiaInterface[]) => {
-                return dados.map(dadoDeHoje => {
-                    return new Negociacao(
-                        new Date(), 
-                        dadoDeHoje.vezes, 
-                        dadoDeHoje.montante)
-                })
-            })
+        this.negociacaoService
+            .obterNegociacoesDoDia()
             .then(negociacoesDeHoje => {
                 for (let negogociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negogociacao);
