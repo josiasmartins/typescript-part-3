@@ -11,6 +11,11 @@ else {
     throw Error('Não foi possível inicializar a aplicação. Verifique se o form existe.');
 }
 const botaoImporta = document.querySelector('#botao-importa');
+const buttonDark = document.querySelector("#dark-mode");
+buttonDark === null || buttonDark === void 0 ? void 0 : buttonDark.addEventListener('click', () => {
+    console.log(buttonDark);
+    document.body.classList.toggle('dark-mode');
+});
 if (botaoImporta) {
     botaoImporta.addEventListener('click', () => {
         controller.importaDados();

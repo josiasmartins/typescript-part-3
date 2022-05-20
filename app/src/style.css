@@ -1,0 +1,59 @@
+:root {
+    --background-color: ;
+    --text-color: rgb(69, 6, 146);
+    --text-default: ;
+    --button-color: #fff;
+}
+
+.dark-mode {
+    --background-color: rgb(0, 0, 0);
+    --text-color: rgb(69, 6, 146);
+    --text-default: #fff;
+    --button-color: #fff;
+}
+
+body {
+    background: var(--background-color);
+}
+
+h1 {
+    color: var(--text-color);
+}
+
+label {
+    color: var(--text-color);
+}
+
+th {
+    color: var(--text-color);
+}
+
+.container > button {
+    border-radius: 40%;
+    display: flex;
+    position: absolute;
+    bottom: 94%;
+}
+
+.container > button:hover {
+    color: var(--button-color);
+}
+
+button:nth-child(1) {
+    border: 1px solid var(--text-default);
+    border-radius: 10px !important;
+    color: var(--text-default) !important;
+}
+
+button {
+    background: var(--text-color) !important;
+}
+
+td {
+    color: var(--text-default);
+}
+
+td:hover {
+    color: var(--text-color);
+    font-size: large !important;
+}
