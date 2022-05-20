@@ -1,9 +1,17 @@
-export class Negociacao {
+import { Imprimivil } from '../utils/imprimivil.js';
+
+/**
+ *  extends
+ *      - polimorfismo
+ */
+export class Negociacao extends Imprimivil {
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
         public readonly valor: number
-    ) {}
+    ) {
+        super();
+    }
 
     public static criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao {
         const exp = /-/g;
@@ -30,3 +38,5 @@ export class Negociacao {
         `;
     }
 }
+
+const o: Imprimivil = new Negociacao(new Date(), 1, 100);

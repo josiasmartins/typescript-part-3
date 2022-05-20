@@ -9,6 +9,7 @@ import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 import { imprimir } from '../utils/imprimir.js';
+import { Imprimivil } from '../utils/imprimivil.js';
 
 export class NegociacaoController {
     @domInjector('#data')
@@ -48,8 +49,7 @@ export class NegociacaoController {
         }
 
         this.negociacoes.adiciona(negociacao);
-        const calopsita = 'miau';
-        imprimir(negociacao, this.negociacoes, calopsita);
+        imprimir(negociacao, this.negociacoes);
 
         // console.log(negociacao.paraTexto());
         // console.log(this.negociacoes.paraTexto())
