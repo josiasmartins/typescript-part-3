@@ -1,3 +1,4 @@
+import { inspect } from '../controllers/inspect.js';
 import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 
 export abstract class View<T> {
@@ -17,6 +18,7 @@ export abstract class View<T> {
         }
     }
 
+    @inspect()
     @logarTempoDeExecucao(true)
     public update(model: T): void {
         // performance.now: api de performa do navegador
